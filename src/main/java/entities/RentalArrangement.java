@@ -65,6 +65,7 @@ public class RentalArrangement implements Serializable{
     @ManyToOne
     @JoinColumn(name = "user_name", referencedColumnName = "user_name")
     private User user;
+    
 
     public RentalArrangement (){
     }
@@ -85,6 +86,16 @@ public class RentalArrangement implements Serializable{
         this.total = rADTO.getTotal();
         this.status = rADTO.isStatus();
         this.user = rADTO.getUser();
+    }
+    
+    public RentalArrangement(Long id, String movieId, LocalDate fromDate, LocalDate toDate, int total, boolean status, User user) {
+        this.id = id;
+        this.movieId = movieId;
+        this.fromDate = fromDate;
+        this.toDate = toDate;
+        this.total = total;
+        this.status = status;
+        this.user = user;
     }
 
     public long getId() {

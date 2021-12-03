@@ -113,7 +113,7 @@ public class UserFacade {
     public ArrangementsListDTO getAllArrangementsWithGivenUsername(String username) throws Exception {
         EntityManager em = getEntityManager();
         List<RentalArrangement> arrangements;
-        TypedQuery<RentalArrangement> query = em.createQuery("SELECT ra FROM RentalArrangement ra JOIN ra.user u WHERE u.userName = :name", RentalArrangement.class);
+        TypedQuery<RentalArrangement> query = em.createQuery("SELECT ra FROM RentalArrangement ra WHERE ra.user.userName = :name", RentalArrangement.class);
         query.setParameter("name", username);
         arrangements = query.getResultList();
         return new ArrangementsListDTO(arrangements);

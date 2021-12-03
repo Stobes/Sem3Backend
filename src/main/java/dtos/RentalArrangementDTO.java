@@ -46,7 +46,7 @@ public class RentalArrangementDTO {
         this.toDate = rA.getToDate();
         this.total = rA.getTotal();
         this.status = rA.isStatus();
-        this.user = rA.getUser();
+        this.userName = rA.getUser().getUserName();
     }
 
     public long getId() {
