@@ -22,7 +22,7 @@ public class UserDTO {
     private String userCity;
     private String userZip;
     private int userBalance;
-    private List<Role> roleList = new ArrayList<>();
+    private List<String> roleList = new ArrayList<>();
     
     public UserDTO() {}
 
@@ -33,7 +33,7 @@ public class UserDTO {
         this.userCity = user.getUserCity();
         this.userZip = user.getUserZip();
         this.userBalance = user.getUserBalance();
-        this.roleList = user.getRoleList();
+        this.roleList = user.getRolesAsStrings();
     }
 
     public UserDTO(String userName, String userPass, String userAddress, String userCity, String userZip, int userBalance) {
@@ -95,15 +95,15 @@ public class UserDTO {
         this.userBalance = userBalance;
     }
 
-    public List<Role> getRoleList() {
+    public List<String> getRoleList() {
         return roleList;
     }
 
-    public void setRoleList(List<Role> roleList) {
+    public void setRoleList(List<String> roleList) {
         this.roleList = roleList;
     }
     
-    public void addRole(Role userRole) {
+    public void addRole(String userRole) {
     roleList.add(userRole);
     }
     

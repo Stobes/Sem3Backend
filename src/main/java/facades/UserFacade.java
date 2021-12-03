@@ -1,5 +1,6 @@
 package facades;
 
+import dtos.ArrangementsListDTO;
 import dtos.RentalArrangementDTO;
 import dtos.UserDTO;
 import entities.RentalArrangement;
@@ -7,8 +8,10 @@ import entities.Role;
 import entities.User;
 import errorhandling.API_Exception;
 import java.time.LocalDate;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.TypedQuery;
 import security.errorhandling.AuthenticationException;
 
 /**
@@ -106,4 +109,14 @@ public class UserFacade {
         }
         return new RentalArrangementDTO(ra);
     }
+    
+    public ArrangementsListDTO getAllArrangementsWithGivenUsername(String username) throws Exception {
+        EntityManager em = getEntityManager();
+        List<RentalArrangement> arrangements;
+        TypedQuery<RentalArrangement> query = em.createQuery("SELECT ra FROM RentalArrangement ra JOIN ra.user u WHERE u.userName = :name", RentalArrangement.class);
+        query.setParameter("name", username);
+        arrangements = query.getResultList();
+        return new ArrangementsListDTO(arrangements);
+    }
+    
 }
