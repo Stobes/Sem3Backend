@@ -58,6 +58,7 @@ public class UserResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public UserDTO addRentalArrangement(RentalArrangementDTO raDTO) {
+        System.out.println(raDTO);
         return UF.addRentalArrangement(raDTO);
     }
     
@@ -66,6 +67,22 @@ public class UserResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllArrangementsWithGivenUsername(@PathParam("username") String username) throws Exception{
         return Response.ok(gson.toJson(UF.getAllArrangementsWithGivenUsername(username)), MediaType.APPLICATION_JSON).build();
+    }
+    
+    @Path("userinfo/{username}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getUserByUsername(@PathParam("username") String username) throws Exception {
+        UserDTO uDTO = UF.getUser(username);
+        return Response.ok(gson.toJson(uDTO), MediaType.APPLICATION_JSON).build();
+    }
+    
+    @Path("addfunds")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public UserDTO addBalance(UserDTO u) {
+        return UF.addBalance(u);
     }
 }
     

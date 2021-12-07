@@ -53,9 +53,9 @@ public class UserFacadeTest {
             Role adminRole = new Role("admin");
             u2 = new User("user2", "test321", "testvej2", "testby2", "1234", 55);
             u3 = new User("user3", "test3", "testvej3", "testby3", "1234", 100);
-            ra1 = new RentalArrangement("testFilm1", 50);
-            ra2 = new RentalArrangement("testFilm2", 200);
-            ra3 = new RentalArrangement("testFilm3", 150);
+            ra1 = new RentalArrangement("testFilm1");
+            ra2 = new RentalArrangement("testFilm2");
+            ra3 = new RentalArrangement("testFilm3");
             ra3.setToDate(LocalDate.now().minusDays(1));
             u3.addArrangement(ra2);
             u3.addArrangement(ra3);
@@ -121,30 +121,29 @@ public class UserFacadeTest {
         
         RentalArrangementDTO actual = facade.checkArrangementStatus(raDTO);
         assertEquals(ra3.isStatus(), actual.isStatus());
-    }
+    } 
     
-   /* 
     @Test
-    void addRentedMovie() throws Exception {
+    void getUserTest() throws Exception {
+        System.out.println("Testin getUser(String username");
         
-        UserDTO userDTO = new UserDTO(u2);
-        RentedMoviesDTO movieDTO = new RentedMoviesDTO(rm1);
-        u2.addMovie(rm1);
-        User actual = facade.addRentedMovies(movieDTO, userDTO);
-        System.out.println(u2.getRentedMovies() + "," + actual.getRentedMovies());
-        assertEquals(rm1.getTitle(), actual.getRentedMovies().get(0).getTitle());  
+        UserDTO uDTO = new UserDTO(u2);
+        String expected = uDTO.getUserName();
+        String actual = facade.getUser(uDTO.getUserName()).getUserName();
+        assertEquals(expected, actual);
     }
-    */
-
     
-      /* System.out.println("Testing addRentedMovies(RentedMoviesDTO rm, UserDTO u)");
-        UserDTO u1DTO = new UserDTO(u2);
-        u2.addMovie(rm1);
-        RentedMoviesDTO rmDTO = new RentedMoviesDTO(rm1);
-        int expected = u2.getRentedMovies().size();
-        User actual = facade.addRentedMovies(rmDTO, u1DTO);
+    @Test
+    void addBalanceTest() throws Exception {
+        System.out.println("Testing addBalance(UserDTO uDTO");
         
-        assertEquals(expected, actual.getRentedMovies().size());*/
+        UserDTO uDTO = new UserDTO(u3);
+        uDTO.setUserBalance(200);
+        int expected = uDTO.getUserBalance();
+        int actual = facade.addBalance(uDTO).getUserBalance();
+        assertEquals(expected, actual);
+    }
+    
     }
     
     

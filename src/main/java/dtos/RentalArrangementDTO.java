@@ -20,7 +20,7 @@ public class RentalArrangementDTO {
     private String movieId;
     private LocalDate fromDate = LocalDate.now();
     private LocalDate toDate = LocalDate.now().plusDays(2);
-    private int total;
+    private int price;
     private boolean status = true;
     private User user;
     private String userName;
@@ -28,12 +28,12 @@ public class RentalArrangementDTO {
     public RentalArrangementDTO (){
     }
 
-    public RentalArrangementDTO(String movieId, int total, String userName){
+    public RentalArrangementDTO(String movieId, String userName){
     
     this.movieId = movieId;
     this.fromDate = fromDate;
     this.toDate = toDate;
-    this.total = total;
+    this.price = price;
     this.status = status;
     this.userName = userName;
     
@@ -44,7 +44,7 @@ public class RentalArrangementDTO {
         this.movieId = rA.getMovieId();
         this.fromDate = rA.getFromDate();
         this.toDate = rA.getToDate();
-        this.total = rA.getTotal();
+        this.price = rA.getPrice();
         this.status = rA.isStatus();
         this.userName = rA.getUser().getUserName();
     }
@@ -73,12 +73,12 @@ public class RentalArrangementDTO {
         this.toDate = toDate;
     }
 
-    public int getTotal() {
-        return total;
+    public int getPrice() {
+        return price;
     }
 
-    public void setTotal(int total) {
-        this.total = total;
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     public boolean isStatus() {

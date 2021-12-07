@@ -84,6 +84,7 @@ public class UserFacade {
         u = em.find(User.class, raDTO.getUserName());
         if(u != null) {
             u.addArrangement(ra);
+            u.setUserBalance(u.getUserBalance() - ra.getPrice());
             em.getTransaction().begin();
             em.merge(u);
             em.getTransaction().commit();
@@ -117,6 +118,31 @@ public class UserFacade {
         query.setParameter("name", username);
         arrangements = query.getResultList();
         return new ArrangementsListDTO(arrangements);
+    }
+    
+    public UserDTO getUser(String username) throws Exception {
+        EntityManager em = emf.createEntityManager();
+        User u = em.find(User.class, username);
+      
+            return new UserDTO(u);
+        
+     
+    }
+    
+    public UserDTO addBalance(UserDTO uDTO) {
+        
+        
+        EntityManager em = emf.createEntityManager();
+        User u = em.find(User.class, uDTO.getUserName());
+        if(u != null) {
+            u.setUserBalance(uDTO.getUserBalance());
+            em.getTransaction().begin();
+            em.merge(u);
+            em.getTransaction().commit();
+        }
+        
+        
+        return new UserDTO(u);
     }
     
 }

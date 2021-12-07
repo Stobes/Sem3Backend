@@ -45,6 +45,11 @@ public class UserDTO {
         this.userBalance = userBalance;
     }
     
+    public UserDTO(String userName, int userBalance) {
+        this.userName = userName;
+        this.userBalance = userBalance;
+    }
+    
     
 
     public String getUserName() {

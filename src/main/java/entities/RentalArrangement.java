@@ -59,7 +59,7 @@ public class RentalArrangement implements Serializable{
     @Column(name = "to_date")
     private LocalDate toDate = LocalDate.now().plusDays(2);
     @Column(name = "total")
-    private int total;
+    private int price = 49;
     @Column(name = "status")
     private boolean status = true;
     @ManyToOne
@@ -70,11 +70,11 @@ public class RentalArrangement implements Serializable{
     public RentalArrangement (){
     }
 
-    public RentalArrangement(String movieId, int total){
+    public RentalArrangement(String movieId){
     this.movieId = movieId;
     this.fromDate = fromDate;
     this.toDate = toDate;
-    this.total = total;
+    this.price = price;
     this.status = status;
     }
     
@@ -83,17 +83,17 @@ public class RentalArrangement implements Serializable{
         this.movieId = rADTO.getMovieId();
         this.fromDate = rADTO.getFromDate();
         this.toDate = rADTO.getToDate();
-        this.total = rADTO.getTotal();
+        this.price = price;
         this.status = rADTO.isStatus();
         this.user = rADTO.getUser();
     }
     
-    public RentalArrangement(Long id, String movieId, LocalDate fromDate, LocalDate toDate, int total, boolean status, User user) {
+    public RentalArrangement(Long id, String movieId, LocalDate fromDate, LocalDate toDate, boolean status, User user) {
         this.id = id;
         this.movieId = movieId;
         this.fromDate = fromDate;
         this.toDate = toDate;
-        this.total = total;
+        this.price = price;
         this.status = status;
         this.user = user;
     }
@@ -122,12 +122,12 @@ public class RentalArrangement implements Serializable{
         this.toDate = toDate;
     }
 
-    public int getTotal() {
-        return total;
+    public int getPrice() {
+        return price;
     }
 
-    public void setTotal(int total) {
-        this.total = total;
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     public boolean isStatus() {
@@ -159,7 +159,7 @@ public class RentalArrangement implements Serializable{
 
     @Override
     public String toString() {
-        return "RentalArrangement{" + "id=" + id + ", fromDate=" + fromDate + ", toDate=" + toDate + ", total=" + total + ", status=" + status + ", user=" + user + '}';
+        return "RentalArrangement{" + "id=" + id + ", fromDate=" + fromDate + ", toDate=" + toDate + ", total=" + price + ", status=" + status + ", user=" + user + '}';
     }
     
     
