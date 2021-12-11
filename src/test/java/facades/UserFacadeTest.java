@@ -136,10 +136,10 @@ public class UserFacadeTest {
     @Test
     void addBalanceTest() throws Exception {
         System.out.println("Testing addBalance(UserDTO uDTO");
-        
+        int addedFunds = 200;
         UserDTO uDTO = new UserDTO(u3);
-        uDTO.setUserBalance(200);
-        int expected = uDTO.getUserBalance();
+        uDTO.setUserBalance(uDTO.getUserBalance() + addedFunds);
+        int expected = uDTO.getUserBalance() + u3.getUserBalance();
         int actual = facade.addBalance(uDTO).getUserBalance();
         assertEquals(expected, actual);
     }

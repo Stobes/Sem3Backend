@@ -36,13 +36,13 @@ public class UserDTO {
         this.roleList = user.getRolesAsStrings();
     }
 
-    public UserDTO(String userName, String userPass, String userAddress, String userCity, String userZip, int userBalance) {
+    public UserDTO(String userName, String userPass, String userAddress, String userCity, String userZip) {
         this.userName = userName;
         this.userPass = userPass;
         this.userAddress = userAddress;
         this.userCity = userCity;
         this.userZip = userZip;
-        this.userBalance = userBalance;
+        this.userBalance = 0;
     }
     
     public UserDTO(String userName, int userBalance) {

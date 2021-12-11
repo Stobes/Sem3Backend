@@ -135,7 +135,7 @@ public class UserFacade {
         EntityManager em = emf.createEntityManager();
         User u = em.find(User.class, uDTO.getUserName());
         if(u != null) {
-            u.setUserBalance(uDTO.getUserBalance());
+            u.setUserBalance(u.getUserBalance() + uDTO.getUserBalance());
             em.getTransaction().begin();
             em.merge(u);
             em.getTransaction().commit();
